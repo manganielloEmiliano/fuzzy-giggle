@@ -5,6 +5,13 @@ import useFetch from "../../hooks/useFetch";
 import { Logo } from "../logo/logo";
 import "./SignUp.css";
 
+// Importación de las imágenes desde src/assets
+import UserIcon from "../../assets/User.svg";
+import EnvelopeIcon from "../../assets/Envelope.svg";
+import EyeSlashIcon from "../../assets/EyeSlash.svg";
+import ArrowUpRightIcon from "../../assets/ArrowUpRight.svg";
+import LogoFlock from "../../assets/logo-flock.png";
+
 interface ApiResponse {
   message: string;
 }
@@ -13,10 +20,10 @@ export const SignUp: FC = () => {
   const navigate = useNavigate();
 
   const inputFields = [
-    { label: "Nombre y Apellido", type: "text", placeholder: "Nombre y Apellido", iconSrc: "src/assets/User.svg" },
-    { label: "Email", type: "email", placeholder: "example@example.com", iconSrc: "src/assets/Envelope.svg" },
-    { label: "Contraseña", type: "password", placeholder: "Escribe tu contraseña", iconSrc: "src/assets/EyeSlash.svg" },
-    { label: "Repetir Contraseña", type: "password", placeholder: "Repite tu contraseña", iconSrc: "src/assets/EyeSlash.svg" },
+    { label: "Nombre y Apellido", type: "text", placeholder: "Nombre y Apellido", iconSrc: UserIcon },
+    { label: "Email", type: "email", placeholder: "example@example.com", iconSrc: EnvelopeIcon },
+    { label: "Contraseña", type: "password", placeholder: "Escribe tu contraseña", iconSrc: EyeSlashIcon },
+    { label: "Repetir Contraseña", type: "password", placeholder: "Repite tu contraseña", iconSrc: EyeSlashIcon },
   ];
 
   const { data, loading, error, fetchData } = useFetch<ApiResponse>({
@@ -45,7 +52,7 @@ export const SignUp: FC = () => {
   return (
     <>
       <div className="absolute top-5 left-5">
-        <Logo src="src/assets/logo-flock.png" width="222px" height="57px" />
+        <Logo src={LogoFlock} width="222px" height="57px" />
       </div>
 
       <div className="div-formulario mt-20">
@@ -59,7 +66,7 @@ export const SignUp: FC = () => {
           buttonText="Ingresar"
           onSubmit={handleFormSubmit}
           buttonType="submit"
-          buttonIconSrc="/src/assets/ArrowUpRight.svg"
+          buttonIconSrc={ArrowUpRightIcon}
           onInputChange={handleInputChange} // Ahora pasa la función correctamente
         />
 
