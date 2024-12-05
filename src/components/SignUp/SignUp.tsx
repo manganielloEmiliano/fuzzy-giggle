@@ -5,12 +5,12 @@ import useFetch from "../../hooks/useFetch";
 import { Logo } from "../logo/logo";
 import "./SignUp.css";
 
-// Importación de las imágenes desde src/assets
-import UserIcon from "../../assets/User.svg";
-import EnvelopeIcon from "../../assets/Envelope.svg";
-import EyeSlashIcon from "../../assets/EyeSlash.svg";
-import ArrowUpRightIcon from "../../assets/ArrowUpRight.svg";
-import LogoFlock from "../../assets/logo-flock.png";
+// Importación de imágenes desde la carpeta public/assets
+const UserIcon = "/assets/User.svg";
+const EnvelopeIcon = "/assets/Envelope.svg";
+const EyeSlashIcon = "/assets/EyeSlash.svg";
+const ArrowUpRightIcon = "/assets/ArrowUpRight.svg";
+const LogoFlock = "/assets/logo-flock.png";
 
 interface ApiResponse {
   message: string;
@@ -67,7 +67,7 @@ export const SignUp: FC = () => {
           onSubmit={handleFormSubmit}
           buttonType="submit"
           buttonIconSrc={ArrowUpRightIcon}
-          onInputChange={handleInputChange} // Ahora pasa la función correctamente
+          onInputChange={handleInputChange}
         />
 
         <p className="p-tienesCuenta">
