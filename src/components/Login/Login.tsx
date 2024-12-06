@@ -23,13 +23,13 @@ export const Login: FC = () => {
       label: "Email",
       type: "email",
       placeholder: "example@example.com",
-      iconSrc: "src/assets/Envelope.svg",
+      iconSrc: "/Envelope.svg",
     },
     {
       label: "Contraseña",
       type: "password",
       placeholder: "************",
-      iconSrc: "src/assets/EyeSlash.svg",
+      iconSrc: "/EyeSlash.svg",
     },
   ];
 
@@ -50,8 +50,7 @@ export const Login: FC = () => {
     }
 
     if (data?.access_token && !authToken) {
-      // Formatear y guardar el token como "Bearer <token>"
-      
+      // Guardar el token
       setAuthToken(data.access_token);
 
       // Guardar el UID si está disponible
@@ -60,7 +59,7 @@ export const Login: FC = () => {
       }
 
       console.log("Token y datos guardados:", {
-        
+        authToken: data.access_token,
         uid: data.user,
       });
 
@@ -87,14 +86,14 @@ export const Login: FC = () => {
 
   return (
     <>
-      {/* Contenedor aislado para el logo */}
+      {/* Logo */}
       <div className="absolute top-5 left-5">
-        <Logo src="src/assets/logo-flock.png" width="222px" height="57px" />
+        <Logo src="/logo-flock.png" width="222px" height="57px" />
       </div>
 
       {/* Contenedor principal */}
-      <div className="flex flex-col items-center justify-center min-h-screen mt-1 ml-[1]">
-        <div className="w-[463px] h-[469px] flex flex-col justify-center items-center flex-shrink-0">
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="w-[463px] h-[469px] flex flex-col justify-center items-center">
           <h1 className="text-white text-4xl font-light text-center mb-2">
             Bienvenido <span className="font-semibold">Flocker!</span>
           </h1>
@@ -109,7 +108,7 @@ export const Login: FC = () => {
             buttonText="Ingresar"
             onSubmit={handleFormSubmit}
             buttonType="submit"
-            buttoniconSrc="/src/assets/ArrowUpRight.svg"
+            buttonIconSrc="/ArrowUpRight.svg"
           />
           <p className="text-white text-sm font-semibold mt-4">
             ¿Aún no tienes una cuenta?{" "}

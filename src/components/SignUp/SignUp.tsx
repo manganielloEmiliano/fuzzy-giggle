@@ -5,12 +5,12 @@ import useFetch from "../../hooks/useFetch";
 import { Logo } from "../logo/logo";
 import "./SignUp.css";
 
-// Importación directa de imágenes desde `src/assets`
-import UserIcon from "../../assets/User.svg";
-import EnvelopeIcon from "../../assets/Envelope.svg";
-import EyeSlashIcon from "../../assets/EyeSlash.svg";
-import ArrowUpRightIcon from "../../assets/ArrowUpRight.svg";
-import LogoFlock from "../../assets/logo-flock.png";
+// Rutas absolutas para imágenes directamente en `public`
+const UserIcon = "/User.svg";
+const EnvelopeIcon = "/Envelope.svg";
+const EyeSlashIcon = "/EyeSlash.svg";
+const ArrowUpRightIcon = "/ArrowUpRight.svg";
+const LogoFlock = "/logo-flock.png";
 
 interface ApiResponse {
   message: string;
@@ -46,7 +46,6 @@ export const SignUp: FC = () => {
 
   const handleInputChange = (formData: { [key: string]: string }) => {
     console.log("Estado actualizado del formulario:", formData);
-    // Aquí puedes manejar la lógica de validación si es necesario
   };
 
   return (
