@@ -36,7 +36,7 @@ export const Bookcard: FC<BookcardProps> = ({ title, author, image }) => {
             text="Ver más"
             onClick={() => console.log("Button clicked")}
             type="button"
-            buttonIconSrc="/src/assets/ArrowUpRight.svg"
+            buttonIconSrc="/ArrowUpRight.svg"
           />
         </div>
       </div>
