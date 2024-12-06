@@ -49,7 +49,7 @@ export const Home: FC = () => {
   return (
     <>
       <div className="absolute top-5 left-5">
-        <Logo src="src/assets/logo-flock.png" width="222px" height="57px" />
+        <Logo src="/logo-flock.png" width="222px" height="57px" />
       </div>
 
       <div className="flex justify-center mt-3">
