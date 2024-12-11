@@ -1,16 +1,23 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../button/button";
 
 interface BookcardProps {
+  id: number; // Agregamos el ID para identificar el libro
   title: string;
   author: string;
-  image: string; // El path de la imagen
+  image: string;
 }
 
-export const Bookcard: FC<BookcardProps> = ({ title, author, image }) => {
+export const Bookcard: FC<BookcardProps> = ({ id, title, author, image }) => {
+  const navigate = useNavigate(); // Hook para redirección
+
+  const handleNavigate = () => {
+    navigate(`/book/${id}`); // Redirige al detalle del libro con el ID
+  };
+
   return (
     <div className="w-[200px] h-[320px] flex flex-col items-center rounded-md overflow-hidden ">
-      {/* Imagen redondeada */}
       <div className="w-full h-[60%]">
         <img
           src={image}
@@ -19,7 +26,6 @@ export const Bookcard: FC<BookcardProps> = ({ title, author, image }) => {
         />
       </div>
 
-      {/* Contenedor de texto */}
       <div className="flex-grow flex flex-col justify-between p-2 w-full">
         <div className="flex flex-col items-start gap-1 overflow-hidden">
           <p className="text-white font-inter text-sm font-medium leading-tight text-left break-words">
@@ -30,11 +36,10 @@ export const Bookcard: FC<BookcardProps> = ({ title, author, image }) => {
           </p>
         </div>
 
-        {/* Botón */}
         <div className=" ">
           <Button
             text="Ver más"
-            onClick={() => console.log("Button clicked")}
+            onClick={handleNavigate} // Llamar a handleNavigate al hacer clic
             type="button"
             buttonIconSrc="/ArrowUpRight.svg"
           />

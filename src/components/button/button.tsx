@@ -7,6 +7,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
   buttonIconSrc?: string; 
   disabled?: boolean; // Propiedad opcional para deshabilitar el botón
+  
 }
 
 const Button: FC<ButtonProps> = ({ text, onClick, type = "button", buttonIconSrc, disabled=false }) => {

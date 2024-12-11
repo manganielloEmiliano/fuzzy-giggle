@@ -64,15 +64,17 @@ export const Home: FC = () => {
       
       {!loading && !error && Array.isArray(data) && data.length > 0 ? (
         <div className="layout mt-[100px]">
-          {data.map((book) => (
-            <Bookcard
-              key={book.id}
-              title={book.title}
-              author={book.author}
-              image={book.image_url || "SignupI-Layout/src/assets/libros/image.png"}
-            />
-          ))}
-        </div>
+        {data.map((book) => (
+          <Bookcard
+            key={book.id}
+            id={book.id} // Pasa el ID aquí
+            title={book.title}
+            author={book.author}
+            image={book.image_url || "SignupI-Layout/src/assets/libros/image.png"}
+          />
+        ))}
+      </div>
+      
       ) : (
         <p className="text-white text-center mt-10">No hay libros disponibles.</p>
       )}
