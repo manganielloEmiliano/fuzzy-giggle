@@ -8,6 +8,7 @@ import { DataRow } from "../DataRow/DataRow";
 import { Synopsis } from "../Synopsis/Synopsis";
 import { Sidebar } from "../Sidebar/Sidebar";
 import useFetch from "../../hooks/useFetch";
+import dayjs from "dayjs"; 
 
 interface BookDetailData {
   title: string;
@@ -22,13 +23,11 @@ interface BookDetailData {
 }
 
 export const BookDetail: FC = () => {
-  const { id } = useParams<{ id: string }>(); // Obtener el ID del libro desde la URL
+  const { id } = useParams<{ id: string }>();
 
-  // Recuperar el token y limpiar comillas
   let token = localStorage.getItem("auth-token") || "";
-  token = token.replace(/"/g, ""); // Eliminar comillas si existen
+  token = token.replace(/"/g, "");
 
-  // Construir la URL reemplazando {book_id} con el valor de id
   const bookApiUrl = `${import.meta.env.VITE_BOOKS_API_DETAIL}`.replace("{book_id}", id || "");
 
   const { data: book, loading, error, fetchData } = useFetch<BookDetailData>({
@@ -36,7 +35,7 @@ export const BookDetail: FC = () => {
     url: bookApiUrl,
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 
@@ -58,11 +57,15 @@ export const BookDetail: FC = () => {
     return <p className="text-white text-center mt-10">No se encontraron detalles del libro.</p>;
   }
 
-  // Datos para DataRowGroup
+  // Formatear la fecha de publicación con Day.js
+  const formattedDate = book.published_date
+    ? dayjs(book.published_date).format("DD/MM/YYYY") 
+    : "Desconocido";
+
   const rowsData = [
     { altText: "Género", label: "Género", data: book.genre },
     { altText: "Editorial", label: "Editorial", data: book.publisher },
-    { altText: "Publicación", label: "Publicación", data: book.published_date || "Desconocido" },
+    { altText: "Publicación", label: "Publicación", data: formattedDate },
     { altText: "Páginas", label: "Páginas", data: book.pages.toString() },
   ];
 
@@ -82,21 +85,17 @@ export const BookDetail: FC = () => {
 
       {/* Contenedor principal de detalles del libro y sidebar */}
       <div className="flex mx-auto mt-10" style={{ width: "1256px", height: "726px" }}>
-        {/* Contenedor de imágenes y título */}
         <div
           className="flex flex-col items-center bg-transparent rounded-lg"
           style={{ width: "768px", height: "726px" }}
         >
           <Breadcrumbs bookTitle={book.title} />
-
           <ImageWithButton
             imageUrl={book.image_url || "/placeholder.png"}
             buttonText="Empezar a leer"
             buttonIconSrc="/ArrowUpRight.svg"
           />
         </div>
-
-        {/* Contenedor de detalles y sidebar */}
         <div
           className="flex flex-row gap-8 bg-transparent p-8 rounded-lg"
           style={{ width: "768px", height: "726px" }}
@@ -116,15 +115,9 @@ export const BookDetail: FC = () => {
               label="Tiempo de lectura"
               data={book.reading_time}
             />
-
-            {/* DataRowGroup para mostrar detalles adicionales del libro */}
             <DataRowGroup rows={rowsData} />
-
-            {/* Componente de Sinopsis */}
             <Synopsis description={book.sinopsis} />
           </div>
-
-          {/* Sidebar con imágenes */}
           <Sidebar />
         </div>
       </div>
